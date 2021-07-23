@@ -9,7 +9,7 @@
       >
         <b-card-body class="card-body">
           <h2 class="text-primary">
-            One place for all your search needs.
+            One place for all your Financial Search Needs.
           </h2>
           <b-card-text class="mb-2">
             <span>Popular searches: </span>
@@ -35,6 +35,9 @@
     </section>
     <!--/ search input -->
     <b-row class="container">
+      <b-row class="blog-list-wrapper">
+        <h1 style="margin-bottom:40px;font-weight: bold; ">Blogs Search Results</h1>
+      </b-row>
       <b-row class="blog-list-wrapper">
         <b-col
           v-for="blog in blogList"
@@ -119,6 +122,9 @@
       </b-row>
       <section id="knowledge-base-content">
         <!-- content -->
+        <b-row class="kb-search-content-info match-height">
+          <h1 style="margin-bottom:40px;font-weight: bold; ">FAQs by Category</h1>
+        </b-row>
         <b-row class="kb-search-content-info match-height">
           <b-col
             v-for="item in filteredKB"
