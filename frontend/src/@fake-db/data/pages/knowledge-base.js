@@ -7,49 +7,49 @@ const data = {
       id: 1,
       category: 'sales-automation',
       img: require('@/assets/images/illustration/sales.svg'),
-      title: 'Sales Automation',
+      title: 'Loans',
       desc: 'There is perhaps no better demonstration of the folly of image of our tiny world.',
     },
     {
       id: 2,
       category: 'marketing-automation',
       img: require('@/assets/images/illustration/marketing.svg'),
-      title: 'Marketing Automation',
+      title: 'Credit Cards',
       desc: 'Look again at that dot. That’s here. That’s home. That’s us. On it everyone you love.',
     },
     {
       id: 3,
       category: 'api-questions',
       img: require('@/assets/images/illustration/api.svg'),
-      title: 'API Questions',
+      title: 'EMI Stores',
       desc: 'every hero and coward, every creator and destroyer of civilization.',
     },
     {
       id: 4,
       category: 'personalization',
       img: require('@/assets/images/illustration/personalization.svg'),
-      title: 'Personalization',
+      title: 'Insurance',
       desc: 'It has been said that astronomy is a humbling and character experience.',
     },
     {
       id: 5,
       category: 'email-marketing',
       img: require('@/assets/images/illustration/email.svg'),
-      title: 'Email Marketing',
+      title: 'Investment',
       desc: 'There is perhaps no better demonstration of the folly of human conceits.',
     },
     {
       id: 6,
       category: 'demand-generation',
       img: require('@/assets/images/illustration/demand.svg'),
-      title: 'Demand Generation',
+      title: 'Bajaj Finserv EMI Network Card',
       desc: 'Competent means we will never take anything for granted.',
     },
   ],
   categoryData: [
     {
       id: 0,
-      title: 'Account Settings',
+      title: 'Personal Loans',
       icon: 'SettingsIcon',
       iconColor: 'text-primary',
       questions: [
@@ -82,7 +82,7 @@ const data = {
     },
     {
       id: 1,
-      title: 'API Questions',
+      title: 'Business Loans',
       icon: 'LinkIcon',
       iconColor: 'text-success',
       questions: [
@@ -115,7 +115,7 @@ const data = {
     },
     {
       id: 2,
-      title: 'Billing',
+      title: 'Home Loans',
       icon: 'FileTextIcon',
       iconColor: 'text-danger',
       questions: [
@@ -148,7 +148,7 @@ const data = {
     },
     {
       id: 3,
-      title: 'Copyright & Legal',
+      title: 'Loan Against Property',
       icon: 'LockIcon',
       iconColor: 'text-warning',
       questions: [
@@ -181,7 +181,7 @@ const data = {
     },
     {
       id: 4,
-      title: 'Mobile Apps',
+      title: 'Two-Wheeler Loan',
       icon: 'SmartphoneIcon',
       iconColor: 'text-info',
       questions: [
@@ -214,7 +214,35 @@ const data = {
     },
     {
       id: 5,
-      title: 'Using KnowHow',
+      title: 'Professional Loan',
+      icon: 'InfoIcon',
+      iconColor: '',
+      questions: [
+        {
+          id: 0,
+          question: 'Customization',
+          slug: 'customization',
+        },
+        {
+          id: 1,
+          question: 'Upgrading',
+          slug: 'upgrading',
+        },
+        {
+          id: 2,
+          question: 'Customizing Your Theme',
+          slug: 'customizing-your-theme',
+        },
+        {
+          id: 3,
+          question: 'Upgrading Your Theme',
+          slug: 'upgrading-your-theme',
+        },
+      ],
+    },
+    {
+      id: 6,
+      title: 'Medical Loans',
       icon: 'InfoIcon',
       iconColor: '',
       questions: [

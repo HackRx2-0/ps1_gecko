@@ -20,12 +20,12 @@ export const $themeConfig = {
     type: 'vertical', // vertical, horizontal
     contentWidth: 'full', // full, boxed
     menu: {
-      hidden: false,
+      hidden: true,
       isCollapsed: false,
     },
     navbar: {
       // ? For horizontal menu, navbar type will work for navMenu type
-      type: 'floating', // static , sticky , floating, hidden
+      type: 'hidden', // static , sticky , floating, hidden
       backgroundColor: '', // BS color options [primary, success, etc]
     },
     footer: {
