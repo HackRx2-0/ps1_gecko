@@ -55,28 +55,18 @@ const data = {
       questions: [
         {
           id: 0,
-          question: 'How Secure Is My Password?',
-          slug: 'how-secure-is-my-password',
+          question: 'What is a Personal Loan?',
+          slug: 'personal-loan',
         },
         {
           id: 1,
-          question: 'Can I Change My Username?',
-          slug: 'can-i-change-my-username',
+          question: 'Types of Personal Loan?',
+          slug: 'personal-loan-type',
         },
         {
           id: 2,
-          question: 'Where Can I Upload My Avatar?',
-          slug: 'where-can-i-upload-my-avatar',
-        },
-        {
-          id: 3,
-          question: 'How Do I Change My Timezone?',
-          slug: 'how-do-i-change-my-timezone',
-        },
-        {
-          id: 4,
-          question: 'How Do I Change My Password?',
-          slug: 'how-do-i-change-my-password',
+          question: 'Am I eligible for personal loan?',
+          slug: 'personal-loan-eligibility',
         },
       ],
     },
