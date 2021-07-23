@@ -28,6 +28,17 @@
                 placeholder="Ask a question...."
               />
             </b-input-group>
+            <b-button
+              v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+              variant="primary"
+              style="margin-top: 2rem;"
+            >
+              <feather-icon
+                icon="SearchIcon"
+                class="mr-50"
+              />
+              <span class="align-middle">Search</span>
+            </b-button>
           </b-form>
           <!-- form -->
         </b-card-body>
@@ -36,7 +47,9 @@
     <!--/ search input -->
     <b-row class="container">
       <b-row class="blog-list-wrapper">
-        <h1 style="margin-bottom:40px;font-weight: bold; ">Blogs Search Results</h1>
+        <h1 style="margin-bottom:40px;font-weight: bold; ">
+          Blogs Search Results
+        </h1>
       </b-row>
       <b-row class="blog-list-wrapper">
         <b-col
@@ -48,7 +61,10 @@
             tag="article"
             no-body
           >
-            <b-link :href="blog.link" target="__blank">
+            <b-link
+              :href="blog.link"
+              target="__blank"
+            >
               <b-img
                 :src="blog.img"
                 class="card-img-top"
@@ -125,7 +141,9 @@
       <section id="knowledge-base-content">
         <!-- content -->
         <b-row class="kb-search-content-info match-height">
-          <h1 style="margin-bottom:40px;font-weight: bold; ">FAQs by Category</h1>
+          <h1 style="margin-bottom:40px;font-weight: bold; ">
+            FAQs by Category
+          </h1>
         </b-row>
         <b-row class="kb-search-content-info match-height">
           <b-col
@@ -169,9 +187,10 @@
 </style>
 <script>
 import {
-  BRow, BCol, BCard, BCardBody, BForm, BCardTitle, BInputGroup, BFormInput, BCardText, BInputGroupPrepend, BImg, BLink, BPagination,
+  BRow, BCol, BButton, BCard, BCardBody, BForm, BCardTitle, BInputGroup, BFormInput, BCardText, BInputGroupPrepend, BImg, BLink, BPagination,
 } from 'bootstrap-vue'
 import { kFormatter } from '@core/utils/filter'
+import axios from 'axios'
 
 export default {
   components: {
@@ -183,6 +202,7 @@ export default {
     BCardTitle,
     BForm,
     BInputGroupPrepend,
+    BButton,
     // BMedia,
     // BAvatar,
     // BMediaAside,
@@ -229,6 +249,7 @@ export default {
         },
       ],
       search_query: '',
+      blogLists: [],
       blogList: [
         {
           title: 'How Important Are Credit Card Statements?',
@@ -277,6 +298,14 @@ export default {
     this.$http.get('/kb/data/knowledge_base').then(res => { this.kb = res.data })
   },
   methods: {
+    getBlogs() {
+      axios.get('').then(response => {
+        console.log(response.data)
+      })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     kFormatter,
     tagsColor(tag) {
       if (tag === 'Quote') return 'light-info'
