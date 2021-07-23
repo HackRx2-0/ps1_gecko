@@ -78,28 +78,18 @@ const data = {
       questions: [
         {
           id: 0,
-          question: 'What Technologies Are Used?',
-          slug: 'what-technologies-are-used',
+          question: 'What is a Business Loan?',
+          slug: 'Business-loan',
         },
         {
           id: 1,
-          question: 'What Are The API Limits?',
-          slug: 'what-are-the-api-limits',
+          question: 'What are the types of Business Loan?',
+          slug: 'Business-loan-type',
         },
         {
           id: 2,
-          question: 'Why Was My Application Rejected?',
-          slug: 'why-was-my-application-rejected?',
-        },
-        {
-          id: 3,
-          question: 'Where can I find the documentation?',
-          slug: 'where-can-i-find-the-documentation',
-        },
-        {
-          id: 4,
-          question: 'How Do I Get An API Key?',
-          slug: 'how-do-i-get-an-api-key?',
+          question: 'What are the features and benefits of Business Loan?',
+          slug: 'Business-loan-benefits',
         },
       ],
     },
@@ -111,28 +101,18 @@ const data = {
       questions: [
         {
           id: 0,
-          question: 'Can I Contact A Salés Rep?',
-          slug: 'can-i-contact-a-salés-rep',
+          question: 'What is a Home Loan?',
+          slug: 'Home-loan',
         },
         {
           id: 1,
-          question: 'Do I Need To Pay VAT?',
-          slug: 'do-i-needto-pay-vat',
+          question: 'What are the types of home Loans?',
+          slug: 'Home-loan-types',
         },
         {
           id: 2,
-          question: 'Can I Get A Refund?',
-          slug: 'can-i-get-a-refund',
-        },
-        {
-          id: 3,
-          question: 'Difference Annual & Monthly Billing',
-          slug: 'difference-annual-monthly-billing',
-        },
-        {
-          id: 4,
-          question: 'What Happens If The Price Increases?',
-          slug: 'what-happens-if-the-price-increases?',
+          question: 'What are the home loan rejection reasons?',
+          slug: 'home-loan-reject',
         },
       ],
     },
@@ -144,28 +124,18 @@ const data = {
       questions: [
         {
           id: 0,
-          question: 'How Do I Contact Legal?',
-          slug: 'how-do-i-contact-legal',
+          question: 'What are the Factors Affecting Loan Against Property Interest Rates?',
+          slug: 'loan-against-property-interest',
         },
         {
           id: 1,
-          question: 'Where Are Your Offices Located?',
-          slug: 'where-are-your-offices-located',
+          question: 'How to apply for Loan Against Property?',
+          slug: 'LAP-Application',
         },
         {
           id: 2,
-          question: 'Who Owns The Copyright On Text?',
-          slug: 'who-owns-the-copyright-on-text',
-        },
-        {
-          id: 3,
-          question: 'Our Content Policy',
-          slug: 'our-content-policy',
-        },
-        {
-          id: 4,
-          question: 'How Do I File A DMCA?',
-          slug: 'how-do-i-file-a-dmca',
+          question: 'What is the eligibility of Loan Against Property?',
+          slug: 'LAP-Eligibility',
         },
       ],
     },
@@ -177,28 +147,18 @@ const data = {
       questions: [
         {
           id: 0,
-          question: 'How Do I Download The Android App?',
+          question: 'What are the Advantages of Applying for a Two-Wheeler Loan?',
           slug: 'how-do-i-download-the-android-app',
         },
         {
           id: 1,
-          question: 'How To Download Our iPad App',
+          question: 'What are the Two Wheeler Loan Fees & Charges?',
           slug: 'how-to-download-our-ipad-app',
         },
         {
           id: 2,
-          question: 'Where Can I Upload My Avatar?',
+          question: 'What are the Two Wheeler Loan Eligibility & Documents Required?',
           slug: 'where-can-i-upload-my-avatar',
-        },
-        {
-          id: 3,
-          question: 'Can I Use My Android Phone?',
-          slug: 'can-i-use-my-android-phone',
-        },
-        {
-          id: 4,
-          question: 'Is There An iOS App?',
-          slug: 'is-there-an-ios-app',
         },
       ],
     },
@@ -210,51 +170,18 @@ const data = {
       questions: [
         {
           id: 0,
-          question: 'Customization',
+          question: 'Why do you need a Professional Loan?',
           slug: 'customization',
         },
         {
           id: 1,
-          question: 'Upgrading',
+          question: 'What are the Features of Professional Loan?',
           slug: 'upgrading',
         },
         {
           id: 2,
-          question: 'Customizing Your Theme',
+          question: 'What is the eligibility Criteria of Loan for Professionals?',
           slug: 'customizing-your-theme',
-        },
-        {
-          id: 3,
-          question: 'Upgrading Your Theme',
-          slug: 'upgrading-your-theme',
-        },
-      ],
-    },
-    {
-      id: 6,
-      title: 'Medical Loans',
-      icon: 'InfoIcon',
-      iconColor: '',
-      questions: [
-        {
-          id: 0,
-          question: 'Customization',
-          slug: 'customization',
-        },
-        {
-          id: 1,
-          question: 'Upgrading',
-          slug: 'upgrading',
-        },
-        {
-          id: 2,
-          question: 'Customizing Your Theme',
-          slug: 'customizing-your-theme',
-        },
-        {
-          id: 3,
-          question: 'Upgrading Your Theme',
-          slug: 'upgrading-your-theme',
         },
       ],
     },
