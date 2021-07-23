@@ -48,7 +48,7 @@
             tag="article"
             no-body
           >
-            <b-link :href="blog.link">
+            <b-link :href="blog.link" target="__blank">
               <b-img
                 :src="blog.img"
                 class="card-img-top"
@@ -59,6 +59,7 @@
                 <b-link
                   :href="blog.link"
                   class="blog-title-truncate text-body-heading"
+                  target="__blank"
                 >
                   {{ blog.title }}
                 </b-link>
@@ -84,6 +85,7 @@
               <div class="d-flex justify-content-between align-items-center">
                 <b-link
                   :href="blog.link"
+                  target="__blank"
                   class="font-weight-bold"
                 >
                   Read More
@@ -232,7 +234,7 @@ export default {
           title: 'How Important Are Credit Card Statements?',
           img: 'http://localhost:8080/images/blog/blog1.jpg',
           link: 'https://www.bajajfinservmarkets.in/credit-card/articles/how-important-are-credit-card-statements.html',
-          excerpt: 'Credit Cards have drastically changed the way we look at our finances. Time and again, they have brought premium products within our buying reach and with this, have taught us ',
+          excerpt: 'Credit Cards have drastically changed the way we look at our finances. Time and again, they have brought premium products within our buying reach and with this, have taught us.Yet, there is more than what meets the eye here. Before this euphoric bull run began, Bitcoin was more or less holding in the same range for almost 3 years. ',
         },
         {
           title: 'Cryptocurrencies: Digital Gold or a Ponzi Scheme? Should you make it a part of your portfolio?',
@@ -265,6 +267,10 @@ export default {
       const knowledgeBaseSearchQueryLower = this.knowledgeBaseSearchQuery.toLowerCase()
       return this.kb.filter(item => item.title.toLowerCase().includes(knowledgeBaseSearchQueryLower) || item.desc.toLowerCase().includes(knowledgeBaseSearchQueryLower))
     },
+    // filteredBlogs() {
+    //   const knowledgeBaseSearchQueryLower = this.knowledgeBaseSearchQuery.toLowerCase()
+    //   return this.blogList(blog => blog.title.toLowerCase().includes(knowledgeBaseSearchQueryLower) || blog.desc.toLowerCase().includes(knowledgeBaseSearchQueryLower))
+    // },
   },
   created() {
     // this.$http.get('/blog/list/data').then(res => { this.blogList = res.data })
