@@ -122,7 +122,7 @@
         <b-row class="kb-search-content-info match-height">
           <b-col
             v-for="item in filteredKB"
-            :key="item.id"
+            :key="item.title"
             md="4"
             sm="6"
             class="kb-search-content"
@@ -130,7 +130,6 @@
             <b-card
               class="text-center cursor-pointer"
               :img-src="item.img"
-              :img-alt="item.img.slice(5)"
               img-top
               @click="$router.push({ name: 'pages-knowledge-base-category', params: { category: item.category } })"
             >
@@ -189,7 +188,38 @@ export default {
   data() {
     return {
       knowledgeBaseSearchQuery: '',
-      kb: [],
+      kb: [
+        {
+          title: 'Loans',
+          img: ' ',
+          desc: ' ',
+          category: '',
+        },
+        {
+          title: 'Insurance',
+          img: ' ',
+          desc: ' ',
+          category: '',
+        },
+        {
+          title: 'Credit Cards',
+          img: ' ',
+          desc: ' ',
+          category: '',
+        },
+        {
+          title: 'EMI Stores',
+          img: ' ',
+          desc: ' ',
+          category: '',
+        },
+        {
+          title: 'EMI Cards',
+          img: ' ',
+          desc: ' ',
+          category: '',
+        },
+      ],
       search_query: '',
       blogList: [
         {
@@ -199,16 +229,22 @@ export default {
           excerpt: 'Credit Cards have drastically changed the way we look at our finances. Time and again, they have brought premium products within our buying reach and with this, have taught us ',
         },
         {
-          title: 'How Important Are Credit Card Statements?',
-          img: 'http://localhost:8080/images/blog/blog1.jpg',
-          link: 'https://www.bajajfinservmarkets.in/credit-card/articles/how-important-are-credit-card-statements.html',
-          excerpt: 'Credit Cards have drastically changed the way we look at our finances. Time and again, they have brought premium products within our buying reach and with this, have taught us ',
+          title: 'Cryptocurrencies: Digital Gold or a Ponzi Scheme? Should you make it a part of your portfolio?',
+          img: 'http://localhost:8080/images/blog/blog2.jpeg',
+          link: 'https://www.bajajfinservmarkets.in/discover/journals/blogs/investment/cryptocurrencies-digital-gold-or-a-ponzi-scheme/',
+          excerpt: 'If you had bought Bitcoin worth Rs. 10 Lakhs at the start of March in 2020, it would have been worth approximately Rs. 1.1 Crores in March of 2021, a span of just one year. This shows you how the demand for cryptocurrency is increasing multifold. Yet, there is more than what meets the eye here. Before this euphoric bull run began, Bitcoin was more or less holding in the same range for almost 3 years.',
         },
         {
-          title: 'How Important Are Credit Card Statements?',
-          img: 'http://localhost:8080/images/blog/blog1.jpg',
-          link: 'https://www.bajajfinservmarkets.in/credit-card/articles/how-important-are-credit-card-statements.html',
-          excerpt: 'Credit Cards have drastically changed the way we look at our finances. Time and again, they have brought premium products within our buying reach and with this, have taught us ',
+          title: '7 Key Pillars of the Finserv MARKETS platform',
+          img: 'http://localhost:8080/images/blog/blog3.jpg',
+          link: 'https://www.bajajfinservmarkets.in/discover/expert-speak/technology/7-key-pillars-of-the-finserv-markets-platform/',
+          excerpt: 'Finserv MARKETS is an award-winning digital financial services marketplace. We offer over 27 financial products to over a million customers. The products range across Loans, Insurance, Investment, and Payments. We have, also, recently embarked upon an open market strategy where a customer is offered a choice from various other financial partners, to get the best product as per his needs.',
+        },
+        {
+          title: 'Life Insurance in Times of Pandemic',
+          img: 'http://localhost:8080/images/blog/blog4.jpg',
+          link: 'https://www.bajajfinservmarkets.in/discover/expert-speak/insurance/life-insurance-in-times-of-pandemic/',
+          excerpt: 'At the beginning of this year, nobody could have imagined that a pandemic would affect lives across the globe and cause several deaths. This has not only affected people but also impacted the global economy. Moreover, with people losing their lives unexpectedly, their family’s future is being pushed into a financial threat. With such a growing uncertainty, life insurance plans such as term insurance policies have assumed paramount significance during the current situation.',
         },
       ],
       blogSidebar: {},
