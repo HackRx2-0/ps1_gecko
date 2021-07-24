@@ -5,8 +5,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import json
 import os
-APP_ID=""
-API_KEY=""
+APP_ID="4VFSYI5SW0"
+API_KEY="b995fc2508fdd096df772d98d72f1f6b"
 app_id = os.getenv("APP_ID")
 api_key = os.getenv("API_KEY")
 
@@ -41,7 +41,7 @@ def send_email(ans):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(from_email, '')
+    server.login(from_email, 'gqxbfsqnminnnpuy')
     server.sendmail(from_email, to_email, msgBody)
 
     server.quit()

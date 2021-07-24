@@ -9,7 +9,7 @@
       >
         <b-card-body class="card-body">
           <h2 class="text-primary">
-            Dedicated Source Used on Website
+            Search for FAQs by category. Theek hai?
           </h2>
           <b-card-text class="mb-2">
             <span>Popular searches: </span>
@@ -57,7 +57,8 @@
                 v-for="(que) in data.questions"
                 :key="que.question"
                 class="text-body"
-                :to="{ name: 'pages-knowledge-base-question', params: { category: $route.params.category, slug: que.slug } }"
+                :href="que.link"
+                target="__blank"
               >
                 {{ que.question }}
               </b-list-group-item>

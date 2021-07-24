@@ -57,6 +57,7 @@ const data = {
           id: 0,
           question: 'What is a Personal Loan?',
           slug: 'personal-loan',
+          link: 'https://www.bajajfinservmarkets.in/loans/personal-loan.html#parentHorizontalTab1',
         },
         {
           id: 1,

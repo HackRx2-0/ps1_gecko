@@ -27,6 +27,7 @@
                 placeholder="Ask a question...."
                 required
               />
+              <div id="autocomplete" />
             </b-input-group>
             <b-button
               v-ripple.400="'rgba(255, 255, 255, 0.15)'"
@@ -174,7 +175,12 @@ import {
 } from 'bootstrap-vue'
 import { kFormatter } from '@core/utils/filter'
 import axios from 'axios'
-
+// import { autocomplete } from '@algolia/autocomplete-js'
+//
+// autocomplete({
+//   container: '#autocomplete',
+//   // ...
+// })
 export default {
   components: {
     BRow,
@@ -269,6 +275,7 @@ export default {
     }
   },
   computed: {
+
     filteredKB() {
       const knowledgeBaseSearchQueryLower = this.knowledgeBaseSearchQuery.toLowerCase()
       return this.kb.filter(item => item.title.toLowerCase().includes(knowledgeBaseSearchQueryLower) || item.desc.toLowerCase().includes(knowledgeBaseSearchQueryLower))
