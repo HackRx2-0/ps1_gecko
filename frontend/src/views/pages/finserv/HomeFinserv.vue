@@ -23,68 +23,95 @@
                 <feather-icon icon="SearchIcon" />
               </b-input-group-prepend>
               <b-form-input
-                id="searchbar"
-                v-model="knowledgeBaseSearchQuery"
+                v-model="SearchQuery"
                 placeholder="Ask a question...."
+                required
               />
             </b-input-group>
+            <b-button
+              v-ripple.400="'rgba(255, 255, 255, 0.15)'"
+              variant="primary"
+              style="margin-top: 2rem;"
+              :disabled="SearchQuery.length===0"
+              @click="getBlogs"
+            >
+              <feather-icon
+                icon="SearchIcon"
+                class="mr-50"
+              />
+              <span class="align-middle">Search</span>
+            </b-button>
           </b-form>
           <!-- form -->
         </b-card-body>
       </b-card>
     </section>
     <!--/ search input -->
-    <b-row class="container">
+    <b-row
+      class="container"
+    >
       <b-row class="blog-list-wrapper">
-        <h1 style="margin-bottom:40px;font-weight: bold; ">Blogs Search Results</h1>
+        <h1 style="margin-bottom:40px;font-weight: bold; ">
+          Blogs Search Results
+        </h1>
+        <br>
+        <h2
+          v-if="empty"
+          style="margin-bottom:40px;"
+        >
+          No Blogs found for this query.
+        </h2>
       </b-row>
       <b-row class="blog-list-wrapper">
         <b-col
-          v-for="blog in blogList"
-          :key="blog.img"
+          v-for="blog in blogLists"
+          :key="blog.question"
           md="6"
         >
           <b-card
             tag="article"
             no-body
           >
-            <b-link :href="blog.link" target="__blank">
+            <b-link
+              :href="blog.url"
+              target="__blank"
+            >
               <b-img
-                :src="blog.img"
+                :src="blog.imgUrl"
                 class="card-img-top"
               />
             </b-link>
             <b-card-body>
               <b-card-title>
                 <b-link
-                  :href="blog.link"
+                  :href="blog.url"
                   class="blog-title-truncate text-body-heading"
                   target="__blank"
                 >
-                  {{ blog.title }}
+                  {{ blog.question }}
                 </b-link>
               </b-card-title>
               <div class="my-1 py-25">
-                <!--                <b-link-->
-                <!--                  v-for="(tag,index) in blog.tags"-->
-                <!--                  :key="index"-->
-                <!--                >-->
-                <!--                  <b-badge-->
-                <!--                    pill-->
-                <!--                    class="mr-75"-->
-                <!--                    :variant="tagsColor(tag)"-->
-                <!--                  >-->
-                <!--                    {{ tag }}-->
-                <!--                  </b-badge>-->
-                <!--                </b-link>-->
+                <b-link
+                  v-for="tags in blog.keywords"
+                  :key="tags"
+                >
+                  <b-badge
+                    pill
+                    class="mr-75"
+                    variant="primary"
+                  >
+                    {{ tags }}
+                  </b-badge>
+                </b-link>
               </div>
               <b-card-text class="blog-content-truncate">
-                {{ blog.excerpt }}
+                {{ blog.body }}
               </b-card-text>
               <hr>
               <div class="d-flex justify-content-between align-items-center">
                 <b-link
-                  :href="blog.link"
+                  :href="blog.url"
                   target="__blank"
                   class="font-weight-bold"
                 >
@@ -94,38 +121,13 @@
             </b-card-body>
           </b-card>
         </b-col>
-        <b-col cols="12">
-          <!-- pagination -->
-          <div class="my-2">
-            <b-pagination
-              v-model="currentPage"
-              align="center"
-              :total-rows="rows"
-              first-number
-              last-number
-              prev-class="prev-item"
-              next-class="next-item"
-            >
-              <template #prev-text>
-                <feather-icon
-                  icon="ChevronLeftIcon"
-                  size="18"
-                />
-              </template>
-              <template #next-text>
-                <feather-icon
-                  icon="ChevronRightIcon"
-                  size="18"
-                />
-              </template>
-            </b-pagination>
-          </div>
-        </b-col>
       </b-row>
       <section id="knowledge-base-content">
         <!-- content -->
         <b-row class="kb-search-content-info match-height">
-          <h1 style="margin-bottom:40px;font-weight: bold; ">FAQs by Category</h1>
+          <h1 style="margin-bottom:40px;font-weight: bold; ">
+            FAQs by Category
+          </h1>
         </b-row>
         <b-row class="kb-search-content-info match-height">
           <b-col
@@ -169,9 +171,10 @@
 </style>
 <script>
 import {
-  BRow, BCol, BCard, BCardBody, BForm, BCardTitle, BInputGroup, BFormInput, BCardText, BInputGroupPrepend, BImg, BLink, BPagination,
+  BRow, BCol, BButton, BCard, BCardBody, BForm, BCardTitle, BInputGroup, BFormInput, BCardText, BInputGroupPrepend, BImg, BLink, BBadge,
 } from 'bootstrap-vue'
 import { kFormatter } from '@core/utils/filter'
+import axios from 'axios'
 
 export default {
   components: {
@@ -182,7 +185,9 @@ export default {
     BCardText,
     BCardTitle,
     BForm,
+    BBadge,
     BInputGroupPrepend,
+    BButton,
     // BMedia,
     // BAvatar,
     // BMediaAside,
@@ -190,11 +195,11 @@ export default {
     BLink,
     BInputGroup,
     BImg,
-    BPagination,
     BFormInput,
   },
   data() {
     return {
+      SearchQuery: '',
       knowledgeBaseSearchQuery: '',
       kb: [
         {
@@ -229,6 +234,8 @@ export default {
         },
       ],
       search_query: '',
+      empty: false,
+      blogLists: [],
       blogList: [
         {
           title: 'How Important Are Credit Card Statements?',
@@ -277,6 +284,24 @@ export default {
     this.$http.get('/kb/data/knowledge_base').then(res => { this.kb = res.data })
   },
   methods: {
+    getBlogs() {
+      axios.get(`http://127.0.0.1:5000/search_beta?query=${this.SearchQuery}`).then(response => {
+        console.log(response.data)
+        if (response.data === undefined) {
+          this.empty = true
+        } else {
+          if (response.data.hits.length === 0) {
+            this.empty = true
+            return
+          }
+          this.blogLists = response.data.hits
+          this.empty = false
+        }
+      })
+        .catch(error => {
+          console.log(error)
+        })
+    },
     kFormatter,
     tagsColor(tag) {
       if (tag === 'Quote') return 'light-info'
