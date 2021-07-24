@@ -22,7 +22,7 @@ def structure(hits):
     return s
 
 
-def send_email(ans):
+async def send_email(ans):
     to_email = 'abhirupchakraborty0205@gmail.com'
     from_email = 'abhirupchakraborty0205@gmail.com'
     subject = 'Bajaj Finserv Hackathon - Test Email'
