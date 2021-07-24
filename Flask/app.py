@@ -1,12 +1,12 @@
 from flask import Flask, request, jsonify
-#from processor.processor import QueryProcessor
-# from elastic_search.tfidf import *
+from processor.processor import QueryProcessor
+from elastic_search.tfidf import *
 from elastic_search.data import Data
 from elastic_search.beta_search import beta_search
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-#queryprocessor = QueryProcessor()
+queryprocessor = QueryProcessor()
 
 CORS(app, support_credentials=True)
 @app.route("/")
@@ -36,4 +36,4 @@ def search():
 
 
 if __name__ == "__main__":
-    app.run(host=" 192.168.1.4", port="8000", debug=True)
+    app.run(debug=True)
