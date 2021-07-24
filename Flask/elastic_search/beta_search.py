@@ -5,8 +5,8 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import json
 import os
-APP_ID="4VFSYI5SW0"
-API_KEY="b995fc2508fdd096df772d98d72f1f6b"
+APP_ID=""
+API_KEY=""
 app_id = os.getenv("APP_ID")
 api_key = os.getenv("API_KEY")
 
@@ -21,9 +21,7 @@ def structure(hits):
             str(hit["body"])+"\nLink to Blog: "+str(hit["url"])+"\n"
         s+="\n"
     return s
-
-
-async def send_email(ans):
+def send_email(ans):
     to_email = 'abhirupchakraborty0205@gmail.com'
     from_email = 'abhirupchakraborty0205@gmail.com'
     subject = 'Bajaj Finserv Hackathon - Test Email'
@@ -43,7 +41,7 @@ async def send_email(ans):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(from_email, 'your password')
+    server.login(from_email, '')
     server.sendmail(from_email, to_email, msgBody)
 
     server.quit()
@@ -53,6 +51,6 @@ def beta_search(query):
 
     ans = index.search(query)
     send_email(ans)
-    print(ans)
+    # print(ans)
 
     return ans["hits"]
