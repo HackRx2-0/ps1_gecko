@@ -54,10 +54,9 @@
         <h1 style="margin-bottom:40px;font-weight: bold; ">
           Blogs Search Results
         </h1>
-        <br>
         <h2
           v-if="empty"
-          style="margin-bottom:40px;"
+          style="margin-left:2rem;"
         >
           No Blogs found for this query.
         </h2>
