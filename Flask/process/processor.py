@@ -44,19 +44,21 @@ class QueryProcessor:
             print(e)
         finally:
             self.lem = WordNetLemmatizer()
-
+            
     def generic_preprocessor(self, text):
         text = str(text)
+        soup = BeautifulSoup(text)
+        text = soup.get_text()
         text = text.encode('ascii', 'ignore')
         text = text.decode()
         text = text.lower()
         text = str(TextBlob(text).correct())
         text = contractions.fix(text)
-        text = ' '.join([word for word in text.split()
-                         if not word in set(stopwords.words('english'))])
+        # text = ' '.join([word for word in text.split()
+        #                  if not word in set(stopwords.words('english'))])
         text = re.sub('[^a-zA-Z]', ' ', text)
         text = ' '.join(text.split())
-        text = self.lem.lemmatize(text)
+        # text = self.lem.lemmatize(text)
         return text
 
     def fuzz_matching(self, quest1, quest2):
@@ -64,8 +66,8 @@ class QueryProcessor:
             quest1 = " ".join(quest1)
         if type(quest2) == list:
             quest2 = " ".join(quest2)
-        quest1 = generic_preprocessor(quest1)
-        quest2 = generic_preprocessor(quest2)
+        quest1 = self.generic_preprocessor(quest1)
+        quest2 = self.generic_preprocessor(quest2)
         return fuzz.partial_ratio(quest1, quest2)
 
     def keyword_extraction(self, text):
@@ -89,7 +91,7 @@ class QueryProcessor:
             content = content.split(" ")
             # split on basis of senetnce
             content = [content[i:i+499] for i in range(0, len(content), 499)]
-            content = [question_answering(
+            content = [self.question_answering(
                 i, question, rec=True) for i in content]
             possible_answers = sorted(
                 content, key=lambda x: x[0], reverse=True)
@@ -113,7 +115,7 @@ class QueryProcessor:
                 text = text.split(" ")
                 # split on basis of sentence
                 text = [text[i:499] for i in range(0, len(text), 499)]
-                text = [summarization(i) for i in text]
+                text = [self.summarization(i) for i in text]
                 # can be improved with fuzzy match from list of summarized don't chose text with higher similarity to other
                 return " ".join(text)
         else:
