@@ -27,8 +27,8 @@
                 placeholder="Ask a question...."
                 required
               />
-              <div id="autocomplete" />
             </b-input-group>
+            <div id="autocomplete" />
             <b-button
               v-ripple.400="'rgba(255, 255, 255, 0.15)'"
               variant="primary"
@@ -53,15 +53,15 @@
     >
       <b-row class="blog-list-wrapper">
         <h1 style="margin-bottom:40px;font-weight: bold; ">
-          Blogs Search Results
+          FAQs
         </h1>
         <h2
           v-if="empty"
-          style="margin-left:2rem;"
         >
           No Blogs found for this query.
         </h2>
       </b-row>
+      <br>
       <b-row class="blog-list-wrapper">
         <b-col
           v-for="blog in blogLists"
@@ -121,6 +121,82 @@
             </b-card-body>
           </b-card>
         </b-col>
+
+      </b-row>
+      <br>
+      <b-row>
+        <h1
+          style="margin-bottom:40px;font-weight: bold;margin-top: 4rem;float: left; "
+        >
+          Blogs Search Results
+        </h1>
+        <h2
+          v-if="empty2"
+        >
+          No Blogs found for this query.
+        </h2>
+      </b-row>
+      <br>
+      <b-row>
+        <b-col
+          v-for="blog in blogList2"
+          :key="blog.question"
+          md="6"
+        >
+          <b-card
+            tag="article"
+            no-body
+          >
+            <b-link
+              :href="blog.url"
+              target="__blank"
+            >
+              <b-img
+                :src="blog.imgUrl"
+                class="card-img-top"
+              />
+            </b-link>
+            <b-card-body>
+              <b-card-title>
+                <b-link
+                  :href="blog.url"
+                  class="blog-title-truncate text-body-heading"
+                  target="__blank"
+                >
+                  {{ blog.question }}
+                </b-link>
+              </b-card-title>
+              <div class="my-1 py-25">
+                <b-link
+                  v-for="tags in blog.keywords"
+                  :key="tags"
+                >
+                  <b-badge
+                    pill
+                    class="mr-75"
+                    variant="primary"
+                  >
+                    {{ tags }}
+                  </b-badge>
+                </b-link>
+              </div>
+              <b-card-text class="blog-content-truncate">
+                {{ blog.body }}
+              </b-card-text>
+              <hr>
+              <div class="d-flex justify-content-between align-items-center">
+                <b-link
+                  :href="blog.url"
+                  target="__blank"
+                  class="font-weight-bold"
+                >
+                  Read More
+                </b-link>
+              </div>
+            </b-card-body>
+          </b-card>
+        </b-col>
+
       </b-row>
       <section id="knowledge-base-content">
         <!-- content -->
@@ -175,12 +251,10 @@ import {
 } from 'bootstrap-vue'
 import { kFormatter } from '@core/utils/filter'
 import axios from 'axios'
-// import { autocomplete } from '@algolia/autocomplete-js'
-//
-// autocomplete({
-//   container: '#autocomplete',
-//   // ...
-// })
+// import { h, Fragment, render, onMounted } from 'vue'
+// import algoliasearch from 'algoliasearch/lite'
+// import { autocomplete, getAlgoliaResults } from '@algolia/autocomplete-js'
+
 export default {
   components: {
     BRow,
@@ -240,7 +314,9 @@ export default {
       ],
       search_query: '',
       empty: false,
+      empty2: false,
       blogLists: [],
+      blogList2: [],
       blogList: [
         {
           title: 'How Important Are Credit Card Statements?',
@@ -291,6 +367,10 @@ export default {
   },
   methods: {
     getBlogs() {
+      this.blogLists = []
+      this.blogList2 = []
+      this.empty2 = false
+      this.empty = false
       axios.get(`http://127.0.0.1:5000/search_beta?query=${this.SearchQuery}`).then(response => {
         console.log(response.data)
         if (response.data === undefined) {
@@ -302,6 +382,36 @@ export default {
           }
           this.blogLists = response.data.hits
           this.empty = false
+        }
+      })
+        .catch(error => {
+          console.log(error)
+        })
+      axios.get(`http://35.226.20.253:5000/search?query=${this.SearchQuery}`).then(response => {
+        console.log(response.data)
+        if (response.data === undefined) {
+          this.empty2 = true
+        } else {
+          if (response.data.hits.length === 0) {
+            this.empty2 = true
+            return
+          }
+          // this.blogLists = response.data.hits
+          response.data.hits.forEach(a => {
+            try {
+              console.log(a)
+              this.blogList2.push({
+                question: a.Answer,
+                body: a.Summary,
+                keywords: a.keywords,
+                url: a.URL,
+                imgUrl: 'https://www.deccanherald.com/sites/dh/files/styles/article_detail/public/article_images/2019/01/13/Retirement-1547397777.jpg?itok=JL62u4aV',
+              })
+            } catch (e) {
+              console.log(e)
+            }
+          })
+          this.empty2 = false
         }
       })
         .catch(error => {

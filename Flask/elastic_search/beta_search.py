@@ -41,7 +41,7 @@ def send_email(ans):
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
     server.starttls()
-    server.login(from_email, 'gqxbfsqnminnnpuy')
+    server.login(from_email, '')
     server.sendmail(from_email, to_email, msgBody)
 
     server.quit()
